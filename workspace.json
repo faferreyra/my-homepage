@@ -1,0 +1,59 @@
+{
+  "version": 2,
+  "projects": {
+    "my-homepage-backend": {
+      "root": "apps/my-homepage-backend",
+      "sourceRoot": "apps/my-homepage-backend/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/my-homepage-backend",
+            "main": "apps/my-homepage-backend/src/main.ts",
+            "tsConfig": "apps/my-homepage-backend/tsconfig.app.json",
+            "assets": ["apps/my-homepage-backend/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/my-homepage-backend/src/environments/environment.ts",
+                  "with": "apps/my-homepage-backend/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "my-homepage-backend:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/my-homepage-backend/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/my-homepage-backend"],
+          "options": {
+            "jestConfig": "apps/my-homepage-backend/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "my-homepage-backend"
+}
