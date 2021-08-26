@@ -29,6 +29,13 @@
   "projects": {
     "my-homepage-backend": {
       "tags": []
+    },
+    "my-homepage-nuxt-frontend": {
+      "tags": []
+    },
+    "my-homepage-nuxt-frontend-e2e": {
+      "tags": [],
+      "implicitDependencies": ["my-homepage-nuxt-frontend"]
     }
   }
 }

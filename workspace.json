@@ -8,12 +8,16 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/my-homepage-backend",
             "main": "apps/my-homepage-backend/src/main.ts",
             "tsConfig": "apps/my-homepage-backend/tsconfig.app.json",
-            "assets": ["apps/my-homepage-backend/src/assets"]
+            "assets": [
+              "apps/my-homepage-backend/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -38,15 +42,99 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/my-homepage-backend/**/*.ts"]
+            "lintFilePatterns": [
+              "apps/my-homepage-backend/**/*.ts"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/my-homepage-backend"],
+          "outputs": [
+            "coverage/apps/my-homepage-backend"
+          ],
           "options": {
             "jestConfig": "apps/my-homepage-backend/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "my-homepage-nuxt-frontend": {
+      "projectType": "application",
+      "root": "apps/my-homepage-nuxt-frontend",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/nuxt:browser",
+          "options": {
+            "buildDir": "dist/apps/my-homepage-nuxt-frontend"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/nuxt:server",
+          "options": {
+            "browserTarget": "my-homepage-nuxt-frontend:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "my-homepage-nuxt-frontend:build:production",
+              "dev": false
+            }
+          }
+        },
+        "static": {
+          "executor": "@nx-plus/nuxt:static",
+          "options": {
+            "browserTarget": "my-homepage-nuxt-frontend:build:production"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-homepage-nuxt-frontend/**/*.{ts,js,vue}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/my-homepage-nuxt-frontend"
+          ],
+          "options": {
+            "jestConfig": "apps/my-homepage-nuxt-frontend/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "my-homepage-nuxt-frontend-e2e": {
+      "root": "apps/my-homepage-nuxt-frontend-e2e",
+      "sourceRoot": "apps/my-homepage-nuxt-frontend-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-homepage-nuxt-frontend-e2e/cypress.json",
+            "devServerTarget": "my-homepage-nuxt-frontend:serve",
+            "tsConfig": "apps/my-homepage-nuxt-frontend-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "my-homepage-nuxt-frontend:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-homepage-nuxt-frontend-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
