@@ -36,6 +36,13 @@
     "my-homepage-nuxt-frontend-e2e": {
       "tags": [],
       "implicitDependencies": ["my-homepage-nuxt-frontend"]
+    },
+    "my-homepage-vue2-frontend": {
+      "tags": []
+    },
+    "my-homepage-vue2-frontend-e2e": {
+      "tags": [],
+      "implicitDependencies": ["my-homepage-vue2-frontend"]
     }
   }
 }

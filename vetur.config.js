@@ -7,6 +7,10 @@ module.exports = {
     {
       root: './apps/my-homepage-nuxt-frontend',
       tsconfig: './tsconfig.json'
+    },
+    {
+      root: './apps/my-homepage-vue2-frontend',
+      tsconfig: './tsconfig.json'
     }
   ]
 }

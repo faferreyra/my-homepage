@@ -138,6 +138,89 @@
           }
         }
       }
+    },
+    "my-homepage-vue2-frontend": {
+      "projectType": "application",
+      "root": "apps/my-homepage-vue2-frontend",
+      "sourceRoot": "apps/my-homepage-vue2-frontend/src",
+      "targets": {
+        "build": {
+          "executor": "@nx-plus/vue:browser",
+          "options": {
+            "dest": "dist/apps/my-homepage-vue2-frontend",
+            "index": "apps/my-homepage-vue2-frontend/public/index.html",
+            "main": "apps/my-homepage-vue2-frontend/src/main.ts",
+            "tsConfig": "apps/my-homepage-vue2-frontend/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "mode": "production",
+              "filenameHashing": true,
+              "productionSourceMap": true,
+              "css": {
+                "extract": true,
+                "sourceMap": false
+              }
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nx-plus/vue:dev-server",
+          "options": {
+            "browserTarget": "my-homepage-vue2-frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "my-homepage-vue2-frontend:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-homepage-vue2-frontend/**/*.{ts,tsx,vue}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/my-homepage-vue2-frontend"
+          ],
+          "options": {
+            "jestConfig": "apps/my-homepage-vue2-frontend/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "my-homepage-vue2-frontend-e2e": {
+      "root": "apps/my-homepage-vue2-frontend-e2e",
+      "sourceRoot": "apps/my-homepage-vue2-frontend-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/my-homepage-vue2-frontend-e2e/cypress.json",
+            "devServerTarget": "my-homepage-vue2-frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "my-homepage-vue2-frontend:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/my-homepage-vue2-frontend-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
