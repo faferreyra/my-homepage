@@ -27,6 +27,12 @@
     ]
   },
   "projects": {
+    "applications": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
     "my-homepage-backend": {
       "tags": []
     },

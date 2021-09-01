@@ -1,6 +1,48 @@
 {
   "version": 2,
   "projects": {
+    "applications": {
+      "root": "libs/applications",
+      "sourceRoot": "libs/applications/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/applications/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/applications"],
+          "options": {
+            "jestConfig": "libs/applications/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "core": {
+      "root": "libs/core",
+      "sourceRoot": "libs/core/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/core/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/core"],
+          "options": {
+            "jestConfig": "libs/core/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "my-homepage-backend": {
       "root": "apps/my-homepage-backend",
       "sourceRoot": "apps/my-homepage-backend/src",
@@ -8,16 +50,12 @@
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/my-homepage-backend",
             "main": "apps/my-homepage-backend/src/main.ts",
             "tsConfig": "apps/my-homepage-backend/tsconfig.app.json",
-            "assets": [
-              "apps/my-homepage-backend/src/assets"
-            ]
+            "assets": ["apps/my-homepage-backend/src/assets"]
           },
           "configurations": {
             "production": {
@@ -42,16 +80,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/my-homepage-backend/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/my-homepage-backend/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/my-homepage-backend"
-          ],
+          "outputs": ["coverage/apps/my-homepage-backend"],
           "options": {
             "jestConfig": "apps/my-homepage-backend/jest.config.js",
             "passWithNoTests": true
@@ -101,9 +135,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/my-homepage-nuxt-frontend"
-          ],
+          "outputs": ["coverage/apps/my-homepage-nuxt-frontend"],
           "options": {
             "jestConfig": "apps/my-homepage-nuxt-frontend/jest.config.js",
             "passWithNoTests": true
@@ -185,9 +217,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/my-homepage-vue2-frontend"
-          ],
+          "outputs": ["coverage/apps/my-homepage-vue2-frontend"],
           "options": {
             "jestConfig": "apps/my-homepage-vue2-frontend/jest.config.js",
             "passWithNoTests": true

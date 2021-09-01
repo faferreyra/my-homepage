@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Application {
+  id       Int    @id @default(autoincrement())
+  name     String @db.VarChar(255)
+  url      String @db.VarChar(255)
+  icon     String @db.VarChar(255)
+  position Int    @default(0)
+  @@map("APPLICATION")
+}
+
+model Bookmark {
+  id         Int       @id @default(autoincrement())
+  name       String    @db.VarChar(255)
+  url        String    @db.VarChar(255)
+  icon       String    @db.VarChar(255)
+  position   Int       @default(0)
+  categoryId Int?
+  Category   Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId], name: "FK_a041eb4338548324af2a5669f65")
+  @@map("BOOKMARK")
+}
+
+model Category {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(255)
+  position Int        @default(0)
+  Bookmark Bookmark[]
+  @@map("CATEGORY")
+}
